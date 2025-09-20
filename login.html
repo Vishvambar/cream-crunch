@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #fff;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            width: 700px;
+            height: 500px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .image-section {
+            flex: 1;
+            background: url('your-image-url.jpg') no-repeat center center/cover;
+        }
+
+        .form-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: whitesmoke;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btns button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--dl-color-theme-primary1);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .google-btn {
+            background-color: #db4a39;
+        }
+
+        .google-btn:hover {
+            background-color: #b6382f;
+        }
+
+        .form-container a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: var(--dl-color-theme-primary1);
+            text-decoration: none;
+        }
+
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+
+        .btns {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #google-sign-in-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #google-sign-in-btn svg {
+            margin-left: -5px;
+        }
+
+        .logo-title {
+            color: var(--dl-color-theme-primary1);
+            font-size: 1.2rem;
+            font-family: cursive;
+            font-weight: 800;
+        }
+
+        .logo {
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 0%;
+            left: 5%;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 50px;
+        }
+
+        .login-message {
+            font-size: 26px;
+            font-weight: 600;
+            color: #4CAF50;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            position: absolute;
+            top: 15%;
+        }
+
+        .login-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-30px);
+            }
+
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .login-message.bounce {
+            animation: bounce 1s;
+        }
+
+        /* Rotating Circle Animation */
+        .loading-circle {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--dl-color-theme-primary1);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading-circle.show {
+            opacity: 1;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login-message" class="login-message">
+        Login Successful!
+    </div>
+    <div id="loading-circle" class="loading-circle"></div>
+    <div class="logo">
+        <img alt="Bakery Logo"
+            src="https://img.freepik.com/premium-vector/drawing-cake-with-colorful-candies-it_909058-7582.jpg?uid=R155209832&ga=GA1.1.2018740749.1726916130&semt=ais_incoming" />
+        <p class="logo-title">
+            Cream&Crunch
+        </p>
+    </div>
+    <div class="container">
+        <div class="image-section"><img style="height:100%; width:100%"
+                src="https://img.freepik.com/free-photo/assortment-pieces-cake_114579-28258.jpg" alt=""></div>
+        <div class="form-section">
+            <div class="form-container">
+                <h2>Login</h2>
+                <form id="login-form">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <input id="password" type="password" name="password" placeholder="Password" required>
+                    <div class="btns">
+                        <button class="thq-button-animated" type="submit">Login</button>
+                    </div>
+                </form>
+                <div class="linnks">
+                    <a href="signup.html"> Don't have an account? <span>Sign Up</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+
+    <script type="module">
+        // Initialize Firebase with your credentials
+        const firebaseConfig = {
+            apiKey: "AIzaSyCfQoSWrD3MgszZk7bUKVuOQGrHm8lQNgY",
+            authDomain: "finalyearproject-c903e.firebaseapp.com",
+            databaseURL: "https://finalyearproject-c903e-default-rtdb.firebaseio.com",
+            projectId: "finalyearproject-c903e",
+            storageBucket: "finalyearproject-c903e.firebasestorage.app",
+            messagingSenderId: "973186077279",
+            appId: "1:973186077279:web:e8351c7b851c9f50d841ea",
+            measurementId: "G-R8ZWZB515R"
+        };
+
+        // Initialize Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Get DOM elements
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const form = document.getElementById("login-form");
+        const loginMessage = document.getElementById('login-message');
+        const loadingCircle = document.getElementById('loading-circle');
+
+        // Handle form submission
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            try {
+                // Sign in the user
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Show the "Login Successful" message with animation
+                
+
+                // Show the rotating circle
+                loadingCircle.classList.add('show');
+
+                // Redirect to the home page after 2 seconds
+                setTimeout(() => {
+                    localStorage.setItem("userLoggedIn", "true");
+                    window.location.href = "home.html"; // Redirect to homepage or dashboard
+                }, 2000); // 2 seconds delay before redirecting
+
+            } catch (error) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+                // Handle errors (e.g., incorrect credentials)
+                alert("Error: " + errorMessage);
+            }
+        });
+    </script>
+</body>
+
+</html>

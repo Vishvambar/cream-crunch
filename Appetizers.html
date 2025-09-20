@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "4CXzXdrZ_f6F6933V",
+            });
+        })();
+    </script>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script> <!-- Include Razorpay Checkout Script -->
+
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-auth.js"></script>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCfQoSWrD3MgszZk7bUKVuOQGrHm8lQNgY",
+            authDomain: "finalyearproject-c903e.firebaseapp.com",
+            projectId: "finalyearproject-c903e",
+            storageBucket: "finalyearproject-c903e.appspot.com",
+            messagingSenderId: "973186077279",
+            appId: "1:973186077279:web:ee54875cad164d43d841ea",
+            measurementId: "G-MQK78X673M"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    console.log("User is logged in:", user.uid);
+                    try {
+
+                        const userDocRef = doc(db, "users", user.uid);
+                        const userDoc = await getDoc(userDocRef);
+
+                        if (userDoc.exists()) {
+                            const userData = userDoc.data();
+                            console.log(userData.name);
+                            console.log(userData.email);
+                            console.log(userData.mobileno);
+                            console.log(userData.address);
+                            document.getElementById("name-edit").value = userData.name || "N/A";
+                            document.getElementById("email-edit").value = userData.email || "N/A";
+                            document.getElementById("phone-edit").value = userData.mobileno || "N/A";
+                            document.getElementById("address-edit").value = userData.address || "N/A";
+
+
+                        } else {
+                            alert("User data not found.");
+                        }
+                    } catch (error) {
+                        console.error("Error fetching user data:", error);
+                        alert("Unable to fetch user data.");
+                    }
+                } else if (!isLoggingOut) {
+                    alert("No user is logged in.");
+                    window.location.href = "login.html";
+                }
+            });
+        });
+
+    </script>
+    <script src="cookies.js"></script>
+    <title>Product Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: whitesmoke;
+            height: 100vh;
+            /* background: url(three-layers-pastel-colored-candy-600nw-2470315229.png); */
+
+            background-size: cover;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .header {
+            /* background-color: white; */
+            /* border-bottom: 1px solid var(--dl-color-theme-primary1); */
+            color: var(--dl-color-theme-primary1);
+            height: 5%;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            text-align: center;
+        }
+
+        .cart-icon {
+            cursor: pointer;
+        }
+
+        .new-cart-logo {
+            background-image: url('new-cart-logo.png');
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+        }
+
+        * {
+            padding: 0%;
+            margin: 0%;
+
+        }
+
+
+        .ok-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cart-icon {
+
+            height: 40px;
+            width: 42px;
+            background-image: url('shopping-bag_6467105.png');
+            background-size: cover;
+            margin-bottom: 1%;
+        }
+
+        cart-icon:hover {
+            cursor: pointer;
+        }
+
+        .product-container {
+            height: 45vh;
+            width: 98vw;
+            /* border: 2px solid red; */
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 5%;
+        }
+
+        .product-container p {
+            font-weight: 580;
+        }
+
+        .submenu {
+            width: 24.5%;
+            height: 100%;
+            background-color: whitesmoke;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: 0 8px 12px #0015;
+            border-radius: 15px 15px 15px 15px;
+
+        }
+
+        .submenu img {
+            height: 70%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 15px 15px 0px 0px;
+        }
+
+        .textb {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            width: 95%;
+            height: 30%;
+            border-radius: 0px 0px 15px 15px;
+            padding-left: 15px;
+            /* background-color: blue; */
+
+        }
+
+        .textb h2 {
+            font-size: 1.2rem;
+        }
+
+        .textb h3 {
+            font-size: 1.2rem;
+            color: maroon;
+        }
+
+        .textb p {
+            font-size: 1rem;
+        }
+
+        .zoomin:hover {
+            transition: scale(0.7);
+        }
+
+
+
+
+        /* header and footer */
+
+        nav {
+            background-color: #333;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 5vh;
+            position: relative;
+            /* Changed from sticky or fixed to relative */
+            top: auto;
+            /* No need to set top position if using relative */
+            z-index: auto;
+            /* Ensure z-index is not affecting layout */
+        }
+
+        /* Back arrow container */
+        .back-arrow {
+            display: inline-block;
+            padding: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        /* Styling the SVG to make it modern and sleek */
+        .back-arrow svg {
+            width: 40px;
+            height: 40px;
+            fill: #512e18;
+            /* Dark color for modern look */
+            transition: fill 0.3s ease;
+        }
+
+        /* Hover effects to change the look */
+        .back-arrow:hover {
+            transform: translateX(-5px);
+            /* Slight movement on hover */
+        }
+
+        .back-arrow:hover svg {
+            fill: #007bff;
+            /* Blue color on hover */
+        }
+
+        .cart-wrapper {
+            display: flex;
+            align-items: center;
+            color: white;
+            background-color: #45a049;
+            padding: 7px;
+            outline: none;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+
+        .cart-wrapper:hover {
+            transform: scale(1.04);
+            cursor: pointer;
+        }
+
+        .cart-wrapper svg {
+            margin-right: 10px;
+        }
+
+        .main-footer {
+            background-color: #333;
+            /* padding: 15px 20px; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            /* Changed from sticky or fixed to relative */
+            top: auto;
+            height: 2vh;
+            /* No need to set top position if using relative */
+            z-index: auto;
+            /* Ensure z-index is not affecting layout */
+        }
+
+        .copyright a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo a {
+            color: #FFA726;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background-color: #f5e9d3;
+            color: #1F2020;
+            border-radius: 5px;
+        }
+
+        /* Icon styling */
+        .icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .icons a {
+            margin-left: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .upper h1 {
+            text-align: center;
+            font-size: 1.5rem;
+
+        }
+
+        .upper p {
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lower {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .lower h1 {
+            text-align: center;
+            font-size: 1.5rem;
+
+        }
+
+        .mid {
+            margin-top: 20px;
+        }
+
+        .mid img {
+            background-size: cover;
+            height: 350px;
+
+        }
+
+        .lower p {
+
+            text-align: center;
+            font-size: 0.9rem;
+
+        }
+
+        .lower img {
+            border-radius: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #ddd;
+        }
+
+        .submenu img:hover {
+            cursor: pointer;
+        }
+
+        .add-to-cart {
+            display: none;
+            position: absolute;
+            top: 31%;
+            left: 38%;
+            transform: translate(-50%, -50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submenu img:hover+.add-to-cart {
+            display: none;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 70%;
+            overflow: hidden;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .cart-icon i {
+            font-size: 1.3rem;
+            /* Size of the shopping cart icon */
+            color: green;
+        }
+
+        .cart-icon i:hover {
+            /* Darken background on hover */
+            transform: scale(1.1);
+            /* Slightly enlarge icon on hover */
+        }
+
+        .pricesection {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 23px;
+        }
+
+        .cart-animation {
+            position: fixed;
+            bottom: 20%;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            pointer-events: none;
+            transition: all 0.3s ease-out;
+        }
+
+        .cart-animation.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .cart-animation.bounce {
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .submenu-search {
+            width: 100%;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+            color: black;
+            flex-direction: row-reverse;
+            border-radius: 15px 15px 15px 15px;
+        }
+
+        .submenu-search img {
+            height: 70%;
+            width: 30%;
+            object-fit: cover;
+            border-radius: 15px;
+            padding: 10px;
+            margin: 20px;
+        }
+
+        .submenu-search p {
+            margin: 35px;
+        }
+
+        .linkks {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .linkks ul {
+            Display: flex;
+            align-items: center;
+            justify-content: center;
+            list-style: none;
+            text-decoration: none;
+            gap: 30px
+        }
+
+        .linkks ul li a {
+            text-decoration: none;
+            color: #1b1811;
+            font-weight: 900;
+            font-size: 0.9rem;
+            font-family: initial;
+
+        }
+
+
+
+        /* for active links  */
+
+        .nav-links {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .nav-links.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            /* Adjust width as needed */
+            height: 4px;
+            /* Thickness of the underline */
+            background-color: var(--dl-color-theme-primary1);
+            /* Color of the underline */
+            border-radius: 5px;
+            /* Rounded effect */
+        }
+
+        .cart {
+            box-shadow: 0 8px 12px #0015;
+            border-radius: 5px;
+            width: 25%;
+            min-height: 87.5vh;
+        }
+
+
+        .ok-container {
+            display: flex;
+            width: 100vw;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .okk {
+            gap: 20px;
+            /* margin-bottom: 10vh; */
+            width: 75%;
+            /* margin-top: 5vh; */
+            display: flex;
+            flex-wrap: wrap;
+            display: flex;
+            overflow-y: auto;
+            max-height: 87.5vh;
+        }
+
+        .cart-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10%;
+            flex-direction: column;
+        }
+
+        .add-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 15px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            color: #000;
+            /* Black color for text */
+            background-color: #fff;
+            /* White background */
+            border: 1px solid #000;
+            /* Black border */
+            border-radius: 15px;
+            /* Rounded corners */
+            cursor: pointer;
+            outline: none;
+        }
+
+        .add-button .plus-sign {
+            margin-left: 5px;
+            /* Add spacing between "ADD" and "+" */
+            font-size: 16px;
+        }
+
+        .add-button:hover {
+            background-color: #f3f3f3;
+            /* Light grey on hover */
+        }
+
+        .cart-items {
+            margin-top: 10%;
+        }
+
+        .increase {
+            width: 15px;
+        }
+
+        .decrease {
+            margin-right: 10px;
+            width: 15px;
+        }
+
+        .div-none {
+            display: none;
+        }
+
+        /* Popup Styles */
+
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 41%;
+            left: 32%;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: popup 0.5s ease-out;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            /* For close button positioning */
+        }
+
+        .popup-content .icon {
+            font-size: 60px;
+            color: #e67e22;
+            /* Warm orange */
+            margin-bottom: 20px;
+            animation: bounce 1s ease-in-out;
+        }
+
+        .popup-content h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .popup-content p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Close Button */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: #888;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #e67e22;
+            /* Warm orange on hover */
+        }
+
+        /* Animations */
+        @keyframes popup {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="successPopup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span> <!-- Close button -->
+            <div class="icon">
+                <i class="fas fa-birthday-cake"></i> <!-- Cupcake icon -->
+            </div>
+            <h2>Order Placed Successfully!</h2>
+            <p>Thank you for choosing our bakery. Your delicious treats are on their way!</p>
+        </div>
+    </div>
+    <div class="header">
+        <img alt="Bakery Logo" style="margin-left:20px" src="logo.png" class="navbar-image1" />
+        <p class="logo-title">
+            Cream&Crunch
+        </p>
+        <!-- <div class="linkks">
+            <ul>
+                <li><a href="cakes.html" class="nav-links">CAKES</a></li>
+                <li><a href="brownie.html" class="nav-links">BROWNIES</a></li>
+                <li><a href="deserts.html" class="nav-links">DESERTS</a></li>
+                <li><a href="cupcakes.html" class="nav-links">CUPCAKES</a></li>
+                <li><a href="pestris.html" class="nav-links">PESTRIES</a></li>
+                <li><a href="cookies.html" class="nav-links">CHIP COOKIES</a></li>
+                <li><a href="palmiers.html" class="nav-links">PALMIERS</a></li>
+                <li><a href="tea-cakes.html" class="nav-links">TEA CAKES</a></li>
+            </ul>
+        </div> -->
+    </div>
+    <div class="div-none">
+        <input type="text" id="name-edit">
+        <input type="text" id="phone-edit">
+        <input type="text" id="address-edit">
+        <input type="text" id="email-edit">
+
+    </div>
+
+    <div class="ok-container">
+        <div class="okk">
+            <div class="product-container">
+                <div class="submenu">
+                    <div class="image-container">
+                        <img class="image-container"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9f_ej3sD3cWkcZvmPRW6CX6qPzrPLPKQZMw&s"
+                            alt="Product Image">
+                        <div class="cart-icon">
+                            <img src="shopping-bag_6467105.png" height="40px" width="42px">
+                        </div>
+                    </div>
+                    <div class="add-to-cart">Add To Cart</div>
+                    <div class="textb">
+                        <p>Stuffed Mushroom</p>
+                        <div class="pricesection">
+                            <h3>$ 10.90</h3>
+                            <button class="add-button">
+                                ADD <span class="plus-sign">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="submenu">
+
+                    <div class="image-container">
+                        <img src="data:image/jpeg;base64,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"
+                            alt="">
+                        <div class="cart-icon">
+
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                    <div class="add-to-cart">Add To Cart</div>
+                    <div class="textb">
+
+                        <p>
+                            Salsa
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;6.77
+
+                            </h3>
+                            <button class="add-button">
+                                ADD <span class="plus-sign">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="submenu">
+                    <img src="https://khaddoroshik.com/wp-content/uploads/2023/12/Egg-Roll3.webp" alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+
+                            Egg roll
+
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;12.77
+
+                            </h3>
+                            <button class="add-button">
+                                ADD <span class="plus-sign">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="product-container">
+                <div class="submenu">
+                    <img src="https://img.freepik.com/free-photo/bottom-view-fried-cheese-balls-cherry-tomatoes-lettuce-cutting-board-grey-background_140725-112103.jpg"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Cheese Puff
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;8.90
+
+                            </h3>
+                            <button class="add-button">
+                                ADD <span class="plus-sign">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submenu">
+                    <img src="https://images.getrecipekit.com/20231214152608-buffalo-20sauce-primal-20kitchen-20-8-min.jpeg?aspect_ratio=16:9&quality=90&"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Chicken Dip
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+                            <button class="add-button">
+                                ADD <span class="plus-sign">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-container">
+                <div class="submenu">
+                    <img src="https://png.pngtree.com/background/20230426/original/pngtree-plate-full-of-colorful-salads-picture-image_2491441.jpg"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Special Salad plate
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;12.90
+
+                            </h3>
+                            <button class="add-button">
+                                ADD <span class="plus-sign">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="submenu">
+                    <img src="https://hips.hearstapps.com/hmg-prod/images/how-long-do-deviled-eggs-last-642dbcbbaf4d4.jpeg?crop=1xw:0.5625xh;center,top"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Deviled Eggs Plate
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;10.00
+
+                            </h3>
+                            <button class="add-button">
+                                ADD <span class="plus-sign">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submenu">
+                    <img src="https://www.tasteofhome.com/wp-content/uploads/2018/01/Party-Cheese-Bread_EXPS_HCA17_41625_B10_19_1b-6.jpg?fit=300,300&webp=1"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Cheese Bread
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;3.90
+
+                            </h3>
+                            <button class="add-button">
+                                ADD <span class="plus-sign">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-container">
+                <div class="submenu">
+                    <img src="https://img.freepik.com/premium-photo/bhakarwadi-bakarvadi-bhakharwadi-is-indian-traditional-snacks-originating-from-pune_466689-89933.jpg"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Crunchy Bhakarwdi
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;10.00
+
+                            </h3>
+                            <button class="add-button">
+                                ADD <span class="plus-sign">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="submenu">
+                    <img src="https://www.tasteofhome.com/wp-content/uploads/2018/01/Grilled-Tomato-Peach-Pizza_EXPS_HC17_142137_D07_29_4b-7-e1722978164165.jpg?fit=700,700"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Tomato Peach Pizza
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;12.90
+
+                            </h3>
+                            <button class="add-button">
+                                ADD <span class="plus-sign">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cart">
+            <h3 style="color:#494545; padding: 10px;"> Your Cart</h3>
+
+            <div class="cart-content">
+                <img src="cart-removebg-preview.png">
+                <h2 style="color: #494545;
+                margin-top: 5%;">Your Cart Is Empty</h2>
+                <p style="    margin-top: 1%;
+                font-size: 0.9rem;
+            ">Add Your Favourite Meal Now!</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Select all navigation links
+        const navLinks = document.querySelectorAll('.nav-links');
+
+        // Get the current page path (without query parameters or fragments)
+        const currentPage = window.location.pathname.split("/").pop();
+        console.log('Current Page:', currentPage);
+
+        // Loop through each link to check if it matches the current page
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href');
+            console.log('Link Path:', linkPath); // Move this inside the loop
+            if (linkPath === currentPage) {
+                link.classList.add('active');
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="profile.css">
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCfQoSWrD3MgszZk7bUKVuOQGrHm8lQNgY",
+            authDomain: "finalyearproject-c903e.firebaseapp.com",
+            projectId: "finalyearproject-c903e",
+            storageBucket: "finalyearproject-c903e.appspot.com",
+            messagingSenderId: "973186077279",
+            appId: "1:973186077279:web:ee54875cad164d43d841ea",
+            measurementId: "G-MQK78X673M"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoutButton = document.querySelector('.logout');
+            const animationContainer = document.querySelector('.logout-animation');
+
+            let isLoggingOut = false; // Flag to prevent premature redirection
+
+            // Monitor authentication state
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    console.log("User is logged in:", user.uid);
+                    try {
+
+                        const userDocRef = doc(db, "users", user.uid);
+                        const userDoc = await getDoc(userDocRef);
+
+                        if (userDoc.exists()) {
+                            const userData = userDoc.data();
+
+                            document.getElementById("name-edit").value = userData.name || "N/A";
+                            document.getElementById("email-edit").value = userData.email || "N/A";
+                            document.getElementById("phone-edit").value = userData.mobileno || "N/A";
+                            document.getElementById("address-edit").value = userData.address || "N/A";
+                        } else {
+                            alert("User data not found.");
+                        }
+                    } catch (error) {
+                        console.error("Error fetching user data:", error);
+                        alert("Unable to fetch user data.");
+                    }
+                } else if (!isLoggingOut) {
+                    alert("No user is logged in.");
+                    window.location.href = "login.html";
+                }
+            });
+
+            // Logout functionality
+            if (logoutButton) {
+                logoutButton.addEventListener('click', async () => {
+                    isLoggingOut = true;
+                    logoutButton.disabled = true;
+                    animationContainer?.classList.add('active');
+
+                    try {
+                        await signOut(auth);
+                        clearBrowserData();
+                        setTimeout(() => {
+                            animationContainer?.classList.remove('active');
+                            localStorage.setItem("userLoggedIn","false")
+                            window.location.href = "login.html";
+                        }, 2000);
+                    } catch (error) {
+                        console.error("Error signing out:", error);
+                        alert("Error signing out. Please try again.");
+                    } finally {
+                        logoutButton.disabled = false;
+                    }
+                });
+            }
+
+            // Clear browser data function
+            function clearBrowserData() {
+                localStorage.clear();
+                sessionStorage.clear();
+                document.cookie.split(";").forEach((cookie) => {
+                    const cookieName = cookie.split("=")[0].trim();
+                    document.cookie = `${cookieName}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
+                });
+            }
+
+            // Editable fields
+            const fields = [
+                { id: "name", key: "name" },
+                { id: "email", key: "email" },
+                { id: "phone", key: "mobileno" },
+                { id: "address", key: "address" },
+            ];
+
+            fields.forEach(({ id, key }) => {
+                const input = document.getElementById(`${id}-edit`);
+                const editBtn = document.getElementById(`edit-${id}-btn`);
+                const saveBtn = document.getElementById(`save-${id}-btn`);
+
+                // Enable editing
+                editBtn.addEventListener("click", () => {
+                    input.disabled = false;
+                    input.focus();
+                    editBtn.style.display = "none";
+                    saveBtn.style.display = "inline";
+                });
+
+                // Save changes
+                saveBtn.addEventListener("click", async () => {
+                    const newValue = input.value.trim();
+                    if (newValue) {
+                        try {
+                            const user = auth.currentUser;
+                            if (user) {
+                                const userDocRef = doc(db, "users", user.uid);
+                                await updateDoc(userDocRef, { [key]: newValue });
+                                console.log(`${key} updated in Firestore:`, newValue);
+                                input.disabled = true;
+                                editBtn.style.display = "inline";
+                                saveBtn.style.display = "none";
+                            } else {
+                                console.error("No user is logged in.");
+                            }
+                        } catch (error) {
+                            console.error(`Error updating ${key}:`, error);
+                            alert("Unable to save changes. Please try again.");
+                        }
+                    } else {
+                        alert(`${key.charAt(0).toUpperCase() + key.slice(1)} cannot be empty.`);
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        /* General Reset */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: white;
+            /* Warm, bakery-style background */
+            color: #4a3728;
+            /* Earthy brown tones for text */
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+
+
+        /* Main Content Section */
+        .personal-info-section {
+            width: 50%;
+            background: whitesmoke;
+            padding: 20px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: auto;
+
+        }
+
+        .personal-info-section h2 {
+            font-size: 28px;
+            color: var(--dl-color-theme-primary1);
+            margin-bottom: 20px;
+            font-family: 'Caveat', cursive;
+        }
+
+        .personal-info-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .personal-info-list li {
+            margin-bottom: 20px;
+        }
+
+        .personal-info-list h3 {
+            font-size: 18px;
+            color: #4a3728;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .editable-field {
+            margin-top: 10px;
+        }
+
+        .edit-input {
+            width: 95%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fffaf2;
+            transition: border-color 0.3s;
+        }
+
+        .edit-input:focus {
+            border-color: #d39b67;
+            outline: none;
+        }
+
+        textarea.edit-input {
+            resize: none;
+            height: 80px;
+        }
+
+        /* Buttons */
+        button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        button#edit-name-btn,
+        button#edit-email-btn,
+        button#edit-phone-btn,
+        button#edit-address-btn {
+            background-color: var(--dl-color-theme-primary1);
+            color: white;
+        }
+
+        button#edit-name-btn:hover,
+        button#edit-email-btn:hover,
+        button#edit-phone-btn:hover,
+        button#edit-address-btn:hover {
+            background-color: #b57b4d;
+        }
+
+        button#save-name-btn,
+        button#save-email-btn,
+        button#save-phone-btn,
+        button#save-address-btn {
+            background-color: #e9c46a;
+            /* Light gold for save buttons */
+            color: white;
+        }
+
+        button#save-name-btn:hover,
+        button#save-email-btn:hover,
+        button#save-phone-btn:hover,
+        button#save-address-btn:hover {
+            background-color: #c59a4e;
+        }
+
+        /* Logout Animation */
+        .logout-animation {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: transparent;
+            padding: 20px;
+            text-align: center;
+
+        }
+
+        .logout-animation.active {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .spinner {
+            margin-top: 10px;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #ffd5a6;
+            border-top: 3px solid #d39b67;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-top: 1%;
+            margin-left: 1%;
+        }
+
+        .logout {
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 1%;
+            margin-left: 77%;
+        }
+
+        .img-section {
+            width: 50%;
+            height: 86.9vh;
+            max-height: 86.9vh;
+        }
+
+        .img-section img {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="logo">
+                <img alt="Bakery Logo" style="margin-left:20px" src="logo.png" class="navbar-image1" />
+                <p class="logo-title">
+                    Cream&Crunch
+                </p>
+
+            </div>
+            <div class="logout">
+                <img style="height:auto; width:2.2rem;"
+                    src="https://cdn-icons-png.freepik.com/256/10629/10629622.png?uid=R155209832&ga=GA1.1.2018740749.1726916130&semt=ais_hybrid"
+                    alt="">
+            </div>
+        </div>
+        <div class="hero">
+
+            <div class="logout-animation">Logging out...
+                <div class="spinner"></div>
+            </div>
+
+            <div class="personal-info-section" id="profile-information">
+                <div class="header-div">
+                    <h2>Personal Information</h2>
+                </div>
+
+                <ul class="personal-info-list">
+                    <li>
+                        <h3 style="display:flex; justify-content:space-between; align-items:center">Name <span><button
+                                    id="edit-name-btn">Edit</button>
+                                <button id="save-name-btn" style="display: none;">Save</button></span></h3>
+                        <div class="editable-field">
+                            <input type="text" id="name-edit" class="edit-input" value="Loading..." disabled />
+
+                        </div>
+                    </li>
+                    <li>
+                        <h3 style="display:flex; justify-content:space-between; align-items:center">Email <span><button
+                                    id="edit-email-btn">Edit</button>
+                                <button id="save-email-btn" style="display: none;">Save</button></span></h3>
+                        <div class="editable-field">
+                            <input type="email" id="email-edit" class="edit-input" value="Loading..." disabled />
+
+                        </div>
+                    </li>
+                    <li>
+                        <h3 style="display:flex; justify-content:space-between; align-items:center">Phone <span>
+                                <button id="edit-phone-btn">Edit</button>
+                                <button id="save-phone-btn" style="display: none;">Save</button>
+                            </span></h3>
+                        <div class="editable-field">
+                            <input type="text" id="phone-edit" class="edit-input" value="Loading..." disabled />
+
+                        </div>
+                    </li>
+                    <li>
+                        <h3 style="display:flex; justify-content:space-between; align-items:center">Address
+                            <span><button id="edit-address-btn">Edit</button>
+                                <button id="save-address-btn" style="display: none;">Save</button></span>
+                        </h3>
+                        <div class="editable-field">
+                            <textarea id="address-edit" class="edit-input" disabled>Loading...</textarea>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 
+            <div class="img-section">
+                <img src="https://img.freepik.com/premium-photo/stack-desserts-with-blueberries-glass-milk_1114710-33026.jpg?uid=R155209832&ga=GA1.1.2018740749.1726916130&semt=ais_hybrid"
+                    alt="">
+            </div> -->
+        </div>
+    </div>
+</body>
+
+</html>

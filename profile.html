@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Account</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<style>
+    /* Global Styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    /* Header Styles */
+    header {
+        text-align: center;
+        /* background-color: #f3f3f3; */
+        margin-left: 2%;
+        padding: 1rem 0;
+        display: flex;
+        align-items: center;
+
+        /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 1.8rem;
+        color: #222;
+    }
+
+    /* Main Grid Layout */
+    .account-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 2% auto;
+    }
+
+    /* Individual Cards */
+    .account-card {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .account-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Icons and Text in Cards */
+    .account-card img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 1rem;
+    }
+
+    .account-card h2 {
+        font-size: 1.2rem;
+        color: #333;
+        margin: 0.5rem 0;
+    }
+
+    .account-card p {
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    .logout
+    {
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-top: 1%;
+        margin-left: 77%;
+    }
+</style>
+
+<body>
+    <header style="display:flex; align-items: center;">
+        <img style="height:50px;" alt="Bakery Logo" style="margin-left:20px" src="logo.png" class="navbar-image1" />
+        <p style="color: var(--dl-color-theme-primary1);
+        font-size: 1.2rem;
+        font-family: cursive;
+        font-weight: 800;" class="logo-title">
+            Cream&Crunch
+        </p>
+        <div class="logout">
+            <img style="height:auto; width:2.5rem;" src="https://cdn-icons-png.freepik.com/256/10629/10629622.png?uid=R155209832&ga=GA1.1.2018740749.1726916130&semt=ais_hybrid" alt="">
+        </div>
+    </header>
+    <main class="account-grid">
+        <div class="account-card">
+            <img src="https://img.freepik.com/premium-vector/shopping-cart-white-background_121111-510.jpg?uid=R155209832&ga=GA1.1.2018740749.1726916130&semt=ais_incoming_vrsd"
+                alt="Your Orders">
+            <h2>Your Orders</h2>
+            <p>Track, return, or buy things again</p>
+        </div>
+        <div class="account-card">
+            <img src="user_17948627.png" alt="Login & Security">
+            <h2>Login & Security</h2>
+            <p>Edit login, name, and mobile number</p>
+        </div>
+
+        <div class="account-card">
+            <img src="https://img.freepik.com/premium-vector/pointer-icon-graphic-design-template_109161-4208.jpg?uid=R155209832&ga=GA1.1.2018740749.1726916130&semt=ais_incoming_vrsd"
+                alt="Your Addresses">
+            <h2>Your Addresses</h2>
+            <p>Edit addresses for orders and gifts</p>
+        </div>
+
+        <div class="account-card">
+            <img src="https://img.freepik.com/premium-vector/creative-digital-payment-card-template-logo-design-fast-digital-payment-walletlogos-web-business-brand-payments_607588-9783.jpg?uid=R155209832&ga=GA1.1.2018740749.1726916130&semt=ais_incoming_vrsd"
+                alt="Payment Options">
+            <h2>Payment Options</h2>
+            <p>Edit or add payment methods</p>
+        </div>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

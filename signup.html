@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
+    <title>Sign Up Page</title>
+    <style>
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: white;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            max-width: 700px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+                height: 500px;
+            }
+        }
+
+        .image-section {
+            flex: 1;
+            background: url('your-image-url.jpg') no-repeat center center/cover;
+        }
+
+        .form-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: whitesmoke;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--dl-color-theme-primary1);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .google-btn {
+            background-color: #db4a39;
+        }
+
+        .google-btn:hover {
+            background-color: #b6382f;
+        }
+
+        .form-container a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: var(--dl-color-theme-primary1);
+            text-decoration: none;
+        }
+
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+
+        .logo-title {
+            color: var(--dl-color-theme-primary1);
+            font-size: 1.2rem;
+            font-family: cursive;
+            font-weight: 800;
+        }
+
+        .logo {
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 0%;
+            left: 5%;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 50px;
+        }
+
+        #error-message {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="https://img.freepik.com/premium-vector/drawing-cake-with-colorful-candies-it_909058-7582.jpg"
+            alt="Bakery Logo">
+        <span class="logo-title">Cream&Crunch</span>
+    </div>
+    <div class="container">
+        <div class="image-section">
+            <img style="height: 100%; width: 100%"
+                src="https://img.freepik.com/free-photo/assortment-pieces-cake_114579-28258.jpg" alt="Sign Up Image">
+        </div>
+        <div class="form-section">
+            <div class="form-container">
+                <h2>Sign Up</h2>
+                <div id="error-message"></div>
+                <form id="sign-up-form" action="#" method="POST">
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    <button class="thq-button-animated" type="submit">Sign Up</button>
+                </form>
+                <a href="login.html">Already have an account? Login</a>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCfQoSWrD3MgszZk7bUKVuOQGrHm8lQNgY",
+            authDomain: "finalyearproject-c903e.firebaseapp.com",
+            projectId: "finalyearproject-c903e",
+            storageBucket: "finalyearproject-c903e.appspot.com",
+            messagingSenderId: "973186077279",
+            appId: "1:973186077279:web:e8351c7b851c9f50d841ea"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Form submission
+        document.querySelector('#sign-up-form').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            const username = event.target.username.value.trim();
+            const email = event.target.email.value.trim();
+            const password = event.target.password.value.trim();
+            const confirmPassword = event.target.confirm_password.value.trim();
+            const errorMessageDiv = document.getElementById('error-message');
+
+            if (password !== confirmPassword) {
+                errorMessageDiv.textContent = "Passwords do not match!";
+                return;
+            }
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Save additional user data in Firestore
+                await setDoc(doc(db, "users", user.uid), { username, email });
+
+                alert("Sign Up Successful!");
+                window.location.href = "login.html"; // Redirect to dashboard or desired page
+            } catch (error) {
+                console.error("Error signing up:", error.message);
+                errorMessageDiv.textContent = error.message; // Display error message
+            }
+        });
+    </script>
+</body>
+
+</html>

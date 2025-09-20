@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script> <!-- Include Razorpay Checkout Script -->
+
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-auth.js"></script>
+
+
+    <title>Product Page</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const productContainer = document.querySelector(".product-container");
+
+            // Retrieve orders from localStorage
+            const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+            // Display each order
+            orders.forEach(order => {
+                const orderElement = document.createElement("div");
+                orderElement.classList.add("order");
+
+                const orderIdElement = document.createElement("h5");
+                orderIdElement.textContent = `Order ID: ${order.orderId}`;
+                orderElement.appendChild(orderIdElement);
+
+                const productsElement = document.createElement("div");
+                productsElement.innerHTML = "<strong>Products:</strong>";
+
+                for (const productId in order.products) {
+                    const { name, price, quantity } = order.products[productId];
+                    const productElement = document.createElement("p");
+                    productElement.textContent = `${name} - $${price} x ${quantity}`;
+                    productsElement.appendChild(productElement);
+                }
+                const placed = document.createElement("h6");
+                placed.textContent = `Placed`;
+
+
+                orderElement.appendChild(productsElement);
+                orderElement.appendChild(placed);
+                productContainer.appendChild(orderElement);
+            });
+        });
+
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: whitesmoke;
+            height: 100vh;
+
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .header {
+            /* background-color: white; */
+            /* border-bottom: 1px solid var(--dl-color-theme-primary1); */
+            color: var(--dl-color-theme-primary1);
+            height: 5%;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            text-align: center;
+        }
+
+        h4 {
+            margin-left: 2%;
+            padding: -2px;
+            margin-top: 9px;
+            font-size: 1.7rem;
+            color: #494647;
+            font-family: serif;
+
+        }
+
+        .product-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            max-width: 80vw;
+            margin-left: 10%;
+            height: auto;
+            overflow-y: auto;
+            flex-wrap: wrap;
+                overflow-x: auto;
+            flex-direction: row;
+
+        }
+
+        .order {
+            background: white;
+            padding: 10px;
+
+        }
+
+        h6 {
+            font-size: 1rem;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img alt="Bakery Logo" style="margin-left:20px" src="logo.png" class="navbar-image1" />
+        <p class="logo-title">
+            Cream&Crunch
+        </p>
+    </div>
+    <h4> Your Orders History</h4>
+
+    <div class="product-container">
+
+    </div>
+</body>
+
+</html>

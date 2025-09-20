@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
+    <title>Product Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: whitesmoke;
+            height: 100vh;
+            /* background: url(three-layers-pastel-colored-candy-600nw-2470315229.png); */
+
+            background-size: cover;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .header {
+            /* background-color: white; */
+            /* border-bottom: 1px solid var(--dl-color-theme-primary1); */
+            color: var(--dl-color-theme-primary1);
+            height: 5%;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            text-align: center;
+        }
+
+        .cart-icon {
+            cursor: pointer;
+        }
+
+        .new-cart-logo {
+            background-image: url('new-cart-logo.png');
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+        }
+
+        * {
+            padding: 0%;
+            margin: 0%;
+
+        }
+
+        /* body {
+            background: url('https://files.oaiusercontent.com/file-tYMoQDvBQ16vAe2kEY4nyODS?se=2024-09-24T16%3A34%3A27Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D762db1ef-727a-421a-beaf-85ef3952093f.webp&sig=sMmfvP%2B6nfVmPrsuwYMcto9tB02cOJS4bcmgeFBfwJQ%3D');
+
+        } */
+
+        .okk {
+            gap: 20px;
+            margin-bottom: 10vh;
+            margin-top: 5vh;
+        }
+
+        /* .ok-container {
+            overflow-y: auto;
+            max-height: 89%;
+        } */
+
+        .ok-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cart-icon {
+
+            height: 40px;
+            width: 42px;
+            background-image: url('shopping-bag_6467105.png');
+            background-size: cover;
+            margin-bottom: 1%;
+        }
+
+        cart-icon:hover {
+            cursor: pointer;
+        }
+
+        .product-container {
+            height: 45vh;
+            width: 98vw;
+            /* border: 2px solid red; */
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 5%;
+        }
+
+        .product-container p {
+            font-weight: 580;
+        }
+
+        .submenu {
+            width: 19.5%;
+            height: 100%;
+            background-color: whitesmoke;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: 0 8px 12px #0015;
+            border-radius: 15px 15px 15px 15px;
+
+        }
+
+        .submenu img {
+            height: 70%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 15px 15px 0px 0px;
+        }
+
+        .textb {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            width: 95%;
+            height: 30%;
+            border-radius: 0px 0px 15px 15px;
+            padding-left: 15px;
+            /* background-color: blue; */
+
+        }
+
+        .textb h2 {
+            font-size: 1.2rem;
+        }
+
+        .textb h3 {
+            font-size: 1.2rem;
+            color: maroon;
+        }
+
+        .textb p {
+            font-size: 1rem;
+        }
+
+        .zoomin:hover {
+            transition: scale(0.7);
+        }
+
+
+
+
+        /* header and footer */
+
+        nav {
+            background-color: #333;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 5vh;
+            position: relative;
+            /* Changed from sticky or fixed to relative */
+            top: auto;
+            /* No need to set top position if using relative */
+            z-index: auto;
+            /* Ensure z-index is not affecting layout */
+        }
+
+        /* Back arrow container */
+        .back-arrow {
+            display: inline-block;
+            padding: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        /* Styling the SVG to make it modern and sleek */
+        .back-arrow svg {
+            width: 40px;
+            height: 40px;
+            fill: #512e18;
+            /* Dark color for modern look */
+            transition: fill 0.3s ease;
+        }
+
+        /* Hover effects to change the look */
+        .back-arrow:hover {
+            transform: translateX(-5px);
+            /* Slight movement on hover */
+        }
+
+        .back-arrow:hover svg {
+            fill: #007bff;
+            /* Blue color on hover */
+        }
+
+        .cart-wrapper {
+            display: flex;
+            align-items: center;
+            color: white;
+            background-color: #45a049;
+            padding: 7px;
+            outline: none;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+
+        .cart-wrapper:hover {
+            transform: scale(1.04);
+            cursor: pointer;
+        }
+
+        .cart-wrapper svg {
+            margin-right: 10px;
+        }
+
+        .main-footer {
+            background-color: #333;
+            /* padding: 15px 20px; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            /* Changed from sticky or fixed to relative */
+            top: auto;
+            height: 2vh;
+            /* No need to set top position if using relative */
+            z-index: auto;
+            /* Ensure z-index is not affecting layout */
+        }
+
+        .copyright a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo a {
+            color: #FFA726;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background-color: #f5e9d3;
+            color: #1F2020;
+            border-radius: 5px;
+        }
+
+        /* Icon styling */
+        .icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .icons a {
+            margin-left: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .upper h1 {
+            text-align: center;
+            font-size: 1.5rem;
+
+        }
+
+        .upper p {
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lower {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .lower h1 {
+            text-align: center;
+            font-size: 1.5rem;
+
+        }
+
+        .mid {
+            margin-top: 20px;
+        }
+
+        .mid img {
+            background-size: cover;
+            height: 350px;
+
+        }
+
+        .lower p {
+
+            text-align: center;
+            font-size: 0.9rem;
+
+        }
+
+        .lower img {
+            border-radius: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #ddd;
+        }
+
+        .submenu img:hover {
+            cursor: pointer;
+        }
+
+        .add-to-cart {
+            display: none;
+            position: absolute;
+            top: 31%;
+            left: 38%;
+            transform: translate(-50%, -50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submenu img:hover+.add-to-cart {
+            display: none;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 70%;
+            overflow: hidden;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .cart-icon i {
+            font-size: 1.3rem;
+            /* Size of the shopping cart icon */
+            color: green;
+        }
+
+        .cart-icon i:hover {
+            /* Darken background on hover */
+            transform: scale(1.1);
+            /* Slightly enlarge icon on hover */
+        }
+
+        .pricesection {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 23px;
+        }
+
+        .cart-animation {
+            position: fixed;
+            bottom: 20%;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            pointer-events: none;
+            transition: all 0.3s ease-out;
+        }
+
+        .cart-animation.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .cart-animation.bounce {
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .submenu-search {
+            width: 100%;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+            color: black;
+            flex-direction: row-reverse;
+            border-radius: 15px 15px 15px 15px;
+        }
+
+        .submenu-search img {
+            height: 70%;
+            width: 30%;
+            object-fit: cover;
+            border-radius: 15px;
+            padding: 10px;
+            margin: 20px;
+        }
+
+        .submenu-search p {
+            margin: 35px;
+        }
+
+        .linkks {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .linkks ul {
+            Display: flex;
+            align-items: center;
+            justify-content: center;
+            list-style: none;
+            text-decoration: none;
+            gap: 30px
+        }
+
+        .linkks ul li a {
+            text-decoration: none;
+            color: #1b1811;
+            font-weight: 900;
+            font-size: 0.9rem;
+            font-family: initial;
+
+        }
+
+
+        /* for active links  */
+
+        .nav-links {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .nav-links.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            /* Adjust width as needed */
+            height: 4px;
+            /* Thickness of the underline */
+            background-color: var(--dl-color-theme-primary1);
+            /* Color of the underline */
+            border-radius: 5px;
+            /* Rounded effect */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img alt="Bakery Logo" style="margin-left:20px" src="logo.png" class="navbar-image1" />
+        <p class="logo-title">
+            Cream&Crunch
+        </p>
+        <!-- <div class="linkks">
+            <ul>
+                <li><a href="cakes.html" class="nav-links">CAKES</a></li>
+                <li><a href="brownie.html" class="nav-links">BROWNIES</a></li>
+                <li><a href="deserts.html" class="nav-links">DESERTS</a></li>
+                <li><a href="cupcakes.html" class="nav-links">CUPCAKES</a></li>
+                <li><a href="pestris.html" class="nav-links">PESTRIES</a></li>
+                <li><a href="cookies.html" class="nav-links">CHIP COOKIES</a></li>
+                <li><a href="palmiers.html" class="nav-links">PALMIERS</a></li>
+                <li><a href="tea-cakes.html" class="nav-links">TEA CAKES</a></li>
+            </ul>
+        </div> -->
+    </div>
+
+    <div class="ok-container">
+        <div class="okk">
+            <div class="product-container">
+                <div class="submenu">
+                    <div class="image-container">
+                        <img class="image-container"
+                            src="https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YnJvd25pZXxlbnwwfHwwfHx8MA%3D%3D"
+                            alt="Product Image">
+                        <div class="cart-icon">
+                            <img src="shopping-bag_6467105.png" height="40px" width="42px">
+                        </div>
+                    </div>
+                    <div class="add-to-cart">Add To Cart</div>
+                    <div class="textb">
+                        <p>Walnut Brownie</p>
+                        <div class="pricesection">
+                            <h3>$ 10.90</h3>
+                            <div class="cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submenu">
+
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1461009312844-e80697a81cc7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YnJvd25pZXxlbnwwfHwwfHx8MA%3D%3D"
+                            alt="">
+                        <div class="cart-icon">
+
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                    <div class="add-to-cart">Add To Cart</div>
+                    <div class="textb">
+
+                        <p>
+                            Overload Brownie
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;6.77
+
+                            </h3>
+                            <div class="cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submenu">
+                    <img src="https://plus.unsplash.com/premium_photo-1668862491789-abf80c29ad96?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGJyb3duaWV8ZW58MHx8MHx8fDA%3D"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+
+                            ChocoChip Brownie
+
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;12.77
+
+                            </h3>
+                            <div class="cart-icon   ">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="product-container">
+                <div class="submenu">
+                    <img src="https://plus.unsplash.com/premium_photo-1674819646909-fcb041cb3e6a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnJvd25pZXxlbnwwfHwwfHx8MA%3D%3D"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Millionaire Brownie Chocolate
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;8.90
+
+                            </h3>
+                            <div class="cart-icon bag ">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submenu">
+                    <img src="https://img.freepik.com/free-photo/chocolate-brownie-cake-piece-stack-plate-homemade-pastries_114579-582.jpg?ga=GA1.1.332003414.1737271856&semt=ais_hybrid"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Eagles ChocoChip Brownie
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+                            <div class="cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-container">
+                <div class="submenu">
+                    <img src="https://img.freepik.com/free-photo/christmas-brownie-isolated-white-background_123827-34857.jpg?ga=GA1.1.332003414.1737271856&semt=ais_hybrid"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Delicious Mewa Brownie
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;12.90
+
+                            </h3>
+                            <div class="cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submenu">
+                    <img src="https://img.freepik.com/free-photo/brownies-tower-with-cottage-cheesecake-raspberries_114579-1241.jpg?ga=GA1.1.332003414.1737271856&semt=ais_hybrid"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Strawberry Flavoured Brownie
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;10.00
+
+                            </h3>
+                            <div class="cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submenu">
+                    <img src="https://img.freepik.com/premium-photo/chocolate-brownie-portions_123827-3864.jpg?ga=GA1.1.332003414.1737271856&semt=ais_hybrid"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Mint Brownie
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;3.90
+
+                            </h3>
+                            <div class="cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-container">
+                <div class="submenu">
+                    <img src="https://img.freepik.com/premium-photo/homemade-chocolate-fudge-brownie-with-mix-topping-close-up-selected-focus_583400-2139.jpg?ga=GA1.1.332003414.1737271856&semt=ais_hybrid"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Assorted Brownies GiftPack
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+                            <div class="cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submenu">
+                    <img src="https://img.freepik.com/premium-photo/halloweenthemed-chocolate-bars-gift-box_267830-8347.jpg?ga=GA1.1.332003414.1737271856&semt=ais_hybrid"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Millionaire Brownie
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;12.90
+
+                            </h3>
+                            <div class="cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-container">
+                <div class="submenu">
+                    <img src="https://img.freepik.com/premium-photo/box-with-tulip-forms-confectionery-object-isolated-white-background_568886-4041.jpg?ga=GA1.1.332003414.1737271856&semt=ais_hybrid"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            King's Drange Brownie
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;10.00
+
+                            </h3>
+                            <div class="cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submenu">
+                    <img src="https://img.freepik.com/premium-photo/stack-brown-biscuit-with-melted-chocolate-red-berries-white-background-isolated_651117-163.jpg?ga=GA1.1.332003414.1737271856&semt=ais_hybrid"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            BerryBerry Brownie
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+                            <div class="cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submenu">
+                    <img src="https://img.freepik.com/free-photo/pastry-birthday-white-bakery-tasty_1203-5534.jpg?ga=GA1.1.332003414.1737271856&semt=ais_hybrid"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+
+                    <div class="textb">
+
+                        <p>
+                            Chocolate Crisp Brownie
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;12.90
+
+                            </h3>
+                            <div class="cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-container">
+
+
+            <div class="submenu">
+                <img src="https://img.freepik.com/premium-photo/box-chocolates-with-name-lager-top_985633-42598.jpg?ga=GA1.1.332003414.1737271856&semt=ais_hybrid"
+                    alt="">
+                <div class="add-to-cart">Add To Cart</div>
+
+                <div class="textb">
+
+                    <p>
+                        Special Brownie's Gift Box
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;10.00
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="submenu">
+      <img src="https://organictattva.com/cdn/shop/articles/dahi-sauf-tikki.jpg?v=1716544534&width=600" alt="">
+      <div class="textb">
+       <h2>
+        Garlic Bread 
+       </h2>
+       <p>
+         Fresh and health  breads with lot of fun and taste 
+       </p>
+       <h3>
+         $7.77
+       </h3>
+      </div>
+     </div> -->
+            <div class="submenu">
+                <img src="https://img.freepik.com/premium-photo/chocolate-brownies-paper-boxes-ready-delivery_76440-764.jpg?ga=GA1.1.332003414.1737271856&semt=ais_hybrid"
+                    alt="">
+                <div class="add-to-cart">Add To Cart</div>
+
+                <div class="textb">
+
+                    <p>
+                        Dark Love Brownie
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;3.90
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer style="background-color:transparent">
+
+    </footer>
+    <script>
+        // Select all navigation links
+        const navLinks = document.querySelectorAll('.nav-links');
+
+        // Get the current page path (without query parameters or fragments)
+        const currentPage = window.location.pathname.split("/").pop();
+        console.log('Current Page:', currentPage);
+
+        // Loop through each link to check if it matches the current page
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href');
+            console.log('Link Path:', linkPath); // Move this inside the loop
+            if (linkPath === currentPage) {
+                link.classList.add('active');
+            }
+        });
+
+    </script>
+</body>
+
+</html>

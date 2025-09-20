@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Spotless Hungry Crocodile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style data-tag="reset-style-sheet">
+        html {
+            line-height: 1.15;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        * {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        p,
+        li,
+        ul,
+        pre,
+        div,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        figure,
+        blockquote,
+        figcaption {
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-social-links {
+            display: flex;
+            flex-direction: row;
+        }
+
+        button {
+            background-color: transparent;
+        }
+
+        .thq-section-padding {
+            overflow-x: auto;
+        }
+
+        .thq-section-padding::-webkit-scrollbar {
+            display: none;
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            font-family: inherit;
+            font-size: 100%;
+            line-height: 1.15;
+            margin: 0;
+        }
+
+        button,
+        select {
+            text-transform: none;
+        }
+
+        button,
+        [type="button"],
+        [type="reset"],
+        [type="submit"] {
+            -webkit-appearance: button;
+            color: inherit;
+        }
+
+        button::-moz-focus-inner,
+        [type="button"]::-moz-focus-inner,
+        [type="reset"]::-moz-focus-inner,
+        [type="submit"]::-moz-focus-inner {
+            border-style: none;
+            padding: 0;
+        }
+
+        button:-moz-focus,
+        [type="button"]:-moz-focus,
+        [type="reset"]:-moz-focus,
+        [type="submit"]:-moz-focus {
+            outline: 1px dotted ButtonText;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: inherit;
+        }
+
+        input {
+            padding: 2px 4px;
+        }
+
+        img {
+            display: block;
+        }
+
+        details {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        [data-thq="accordion"] [data-thq="accordion-content"] {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+            padding: 0;
+        }
+
+        [data-thq="accordion"] details[data-thq="accordion-trigger"][open]+[data-thq="accordion-content"] {
+            max-height: 300vh;
+        }
+
+        details[data-thq="accordion-trigger"][open] summary [data-thq="accordion-icon"] {
+            transform: rotate(180deg);
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+    </style>
+    <style data-tag="default-style-sheet">
+        html {
+            font-family: Inter;
+            font-size: 16px;
+        }
+
+        body {
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            text-transform: none;
+            letter-spacing: normal;
+            line-height: 1.15;
+            color: var(--dl-color-theme-neutral-dark);
+            background: var(--dl-color-theme-neutral-light);
+
+            fill: var(--dl-color-theme-neutral-dark);
+        }
+
+
+        .browse-our-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        #browse-our-menu:hover {
+            background-color: #698a93;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@4.1.1/animate.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap"
+        data-tag="font" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+        data-tag="font" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+        data-tag="font" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+        data-tag="font" />
+    <link rel="stylesheet" href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css" />
+    <style>
+        @keyframes fade-in-left {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        #opensignup {
+            padding: 0;
+            height: auto;
+            border: none;
+            cursor: pointer;
+            width: 2.6rem;
+        }
+
+        #opensignup img {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <link rel="stylesheet" href="./style.css" />
+    <div>
+        <link href="./index.css" rel="stylesheet" />
+
+        <div class="home-container">
+            <navbar-wrapper class="navbar-wrapper">
+                <!--Navbar component-->
+                <header class="navbar-container">
+                    <header data-thq="thq-navbar" class="navbar-navbar-interactive">
+                        <img alt="Bakery Logo"
+                            src="https://img.freepik.com/premium-vector/drawing-cake-with-colorful-candies-it_909058-7582.jpg?uid=R155209832&ga=GA1.1.2018740749.1726916130&semt=ais_incoming"
+                            class="navbar-image1" />
+                        <p class="logo-title">
+                            Cream&Crunch
+                        </p>
+                        <div data-thq="thq-navbar-nav" class="navbar-desktop-menu">
+                            <nav class="navbar-links1">
+                                <span class="thq-link thq-body-small"><span>Home</span></span>
+                                <span onclick="about()" class="thq-link thq-body-small">
+                                    <span>About Us</span>
+                                </span>
+                                <span onclick="openmenu()" class="thq-link thq-body-small"><span>Menu</span></span>
+                                <a href="#Contact" class="thq-link thq-body-small">
+                                    <span> Contact Us </span>
+
+                                </a>
+                            </nav>
+                            <div>
+
+                                <button onclick="openprofile()" id="opensignup">
+                                    <img src="user_17948627.png" alt="">
+                                </button>
+                            </div>
+                        </div>
+                        <div data-thq="thq-burger-menu" class="navbar-burger-menu">
+                            <svg viewBox="0 0 1024 1024" class="navbar-icon1">
+                                <path
+                                    d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z">
+                                </path>
+                            </svg>
+                        </div>
+
+                    </header>
+                </header>
+            </navbar-wrapper>
+            <hero-wrapper class="hero-wrapper">
+                <!--Hero component-->
+                <div class="hero-header78">
+                    <div class="hero-column thq-section-max-width thq-section-padding">
+                        <div class="hero-content1">
+                            <h1 class="hero-text1 thq-heading-1">
+                                <span>Welcome to Cream&Crunch</span>
+                            </h1>
+                            <p class="hero-text2 thq-body-large">
+                                <span>
+                                    Indulge in our delicious range of freshly baked goods, made
+                                    with love and the finest ingredients. Order online and have
+                                    them delivered to your doorstep.
+                                </span>
+                            </p>
+                        </div>
+                        <div class="hero-actions">
+                            <button onclick="openmenu()" class="thq-button-filled hero-button1">
+                                <span class="thq-body-small">
+                                    <span>Browse Our Menu</span>
+                                </span>
+                            </button>
+                            <button onclick="open_orders()" class="thq-button-outline hero-button2">
+                                <span class="thq-body-small"><span>Your Orders</span></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-content2">
+                        <div
+                            class="hero-row-container1 thq-animated-group-container-horizontal thq-mask-image-horizontal">
+                            <div class="thq-animated-group-horizontal">
+                                <img alt="Bakery shop interior with display of various pastries and breads"
+                                    src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1NHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image10 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Close-up of a beautifully decorated cake with fresh fruits"
+                                    src="https://images.unsplash.com/photo-1509440159596-0249088772ff?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc0OHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image11 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1519822472072-ec86d5ab6f5c?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc0N3w&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image12 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1M3w&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image13 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1473447547337-5770a453122d?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1M3w&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image14 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1620785552615-cb90d17939cd?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1MXw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image15 thq-img-ratio-1-1 thq-img-scale" />
+                            </div>
+                            <div class="thq-animated-group-horizontal">
+                                <img alt="Bakery shop interior with display of various pastries and breads"
+                                    src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1NHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image16 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Close-up of a beautifully decorated cake with fresh fruits"
+                                    src="https://images.unsplash.com/photo-1509440159596-0249088772ff?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc0OHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image17 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1519822472072-ec86d5ab6f5c?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc0N3w&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image18 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1M3w&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image19 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1473447547337-5770a453122d?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1M3w&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image20 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1534312527009-56c7016453e6?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDIxfHxhYnN0cmFjdHxlbnwwfHx8fDE3MTA4NzA5MzB8MA&amp;ixlib=rb-4.0.3&amp;w=1500"
+                                    class="hero-placeholder-image21 thq-img-ratio-1-1 thq-img-scale" />
+                            </div>
+                        </div>
+                        <div
+                            class="hero-row-container2 thq-animated-group-container-horizontal thq-mask-image-horizontal">
+                            <div class="thq-animated-group-horizontal-reverse">
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1533782654613-826a072dd6f3?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1MXw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image22 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1Mnw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image23 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1Mnw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image24 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1620785552615-cb90d17939cd?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1NHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image25 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1428895009712-de9e58a18409?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc0OXw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image26 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1512223792601-592a9809eed4?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1Mnw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image27 thq-img-ratio-1-1 thq-img-scale" />
+                            </div>
+                            <div class="thq-animated-group-horizontal-reverse">
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1533782654613-826a072dd6f3?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1MXw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image28 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1Mnw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image29 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1Mnw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image30 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1620785552615-cb90d17939cd?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1NHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image31 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1428895009712-de9e58a18409?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc0OXw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                    class="hero-placeholder-image32 thq-img-ratio-1-1 thq-img-scale" />
+                                <img alt="Hero Image"
+                                    src="https://images.unsplash.com/photo-1568214379698-8aeb8c6c6ac8?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDEyfHxncmFmaWN8ZW58MHx8fHwxNzE1Nzk0OTk5fDA&amp;ixlib=rb-4.0.3&amp;w=1500"
+                                    class="hero-placeholder-image33 thq-img-ratio-1-1 thq-img-scale" />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="hero-container2">
+                            <style>
+                                @keyframes scroll-x {
+                                    from {
+                                        transform: translateX(0);
+                                    }
+
+                                    to {
+                                        transform: translateX(calc(-100% - 16px));
+                                    }
+                                }
+
+                                @keyframes scroll-y {
+                                    from {
+                                        transform: translateY(0);
+                                    }
+
+                                    to {
+                                        transform: translateY(calc(-100% - 16px));
+                                    }
+                                }
+                            </style>
+                        </div>
+                    </div>
+                </div>
+            </hero-wrapper>
+
+            <div class="products-container">
+                <section class="best-sellers">
+                    <h2>Products</h2>
+                    <div class="product-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card">
+                            <img src="https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg?cs=srgb&dl=pexels-pixabay-45202.jpg&fm=jpg"
+                                alt="Product 1">
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div class="product-card">
+                            <img src="https://burst.shopifycdn.com/photos/berry-cheesecake.jpg?width=1000&format=pjpg&exif=0&iptc=0"
+                                alt="Product 2">
+                            <h3>DESSERTS</h3>
+                        </div>
+
+                        <!-- Product 3 -->
+                        <div class="product-card">
+                            <img src="https://images7.alphacoders.com/129/1293014.jpg" alt="Product 3">
+                            <h3>CUPCAKES</h3>
+                        </div>
+
+                        <!-- Product 4 -->
+                        <div class="product-card">
+                            <img src="https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                                alt="Product 4">
+                            <h3>PESTRIES</h3>
+                        </div>
+
+                        <!-- Product 5 -->
+                        <div class="product-card">
+                            <img src="https://theobroma.in/cdn/shop/files/BakedVadaPav-Square_400x400.jpg?v=1711611145"
+                                alt="Product 5">
+                            <h3>WADA PAO</h3>
+                        </div>
+
+                        <!-- Product 6 -->
+                        <div class="product-card">
+                            <img src="https://publish-p50513-e440257.adobeaemcloud.com/content/dam/hersheyland/en-us/recipes/recipe-images/123-hersheys-chocolate-chip-cookies-made-with-sugar-free-chocolate-chips.jpg"
+                                alt="Product 6">
+                            <h3>CHIP COOKIES</h3>
+                        </div>
+
+                        <!-- Product 7 -->
+                        <div class="product-card">
+                            <img src="https://assets.bonappetit.com/photos/584af07518c7a82e4dfe9dfd/16:9/w_2560%2Cc_limit/savory-palmiers-with-roasted-garlic-and-rosemary.jpg"
+                                alt="Product 7">
+                            <h3>BUTTER PALMIERS</h3>
+
+                        </div>
+
+
+                        <!-- Product 8 -->
+                        <div class="product-card">
+                            <img src="data:image/jpeg;base64,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"
+                                alt="Product 8">
+                            <h3>TEA CAKES</h3>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="browse-our-menu-btn">
+                        <button id="browse-our-menu" onclick="openmenu()" class="thq-button-filled hero-button1">
+                            <span class="thq-body-small">
+                                <span>Browse Our Menu</span>
+                            </span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+            <cta-wrapper class="cta-wrapper">
+                <!--CTA component-->
+                <div class="thq-section-padding">
+                    <div class="thq-section-max-width">
+                        <div class="cta-accent2-bg">
+                            <div class="cta-accent1-bg">
+                                <div class="cta-container2">
+                                    <div class="cta-content">
+                                        <span class="thq-heading-2">
+                                            <span>Satisfy Your Sweet Cravings</span>
+                                        </span>
+                                        <p class="thq-body-large">
+                                            <span>
+                                                Indulge in our freshly baked goods made with love and
+                                                the finest ingredients.
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="cta-actions">
+                                        <button onclick="openmenu()" type="button" class="thq-button-filled cta-button">
+                                            <span>Order Now</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </cta-wrapper>
+            <features2-wrapper class="features2-wrapper">
+                <!--Features2 component-->
+                <div class="thq-section-padding">
+                    <div class="features2-container2 thq-section-max-width">
+                        <div class="features2-tabs-menu">
+                            <div class="features2-tab-horizontal1">
+                                <div class="features2-divider-container1">
+                                    <div class="features2-container3"></div>
+                                </div>
+                                <div class="features2-content1">
+                                    <h2 class="thq-heading-2">
+                                        <span>Freshly Baked Goods</span>
+                                    </h2>
+                                    <span class="thq-body-small">
+                                        <span>
+                                            Indulge in a wide selection of freshly baked pastries,
+                                            bread, and cakes made with the finest ingredients.
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="features2-tab-horizontal2">
+                                <div class="features2-divider-container2">
+                                    <div class="features2-container4"></div>
+                                </div>
+                                <div class="features2-content2">
+                                    <h2 class="thq-heading-2">
+                                        <span>Customized Orders</span>
+                                    </h2>
+                                    <span class="thq-body-small">
+                                        <span>
+                                            Place custom orders for special occasions and events,
+                                            tailored to your preferences and dietary needs.
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="features2-tab-horizontal3">
+                                <div class="features2-divider-container3">
+                                    <div class="features2-container5"></div>
+                                </div>
+                                <div class="features2-content3">
+                                    <h2 class="thq-heading-2">
+                                        <span>Nationwide Delivery</span>
+                                    </h2>
+                                    <span class="thq-body-small">
+                                        <span>
+                                            Enjoy our delicious treats delivered straight to your
+                                            doorstep anywhere in the country.
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="features2-image-container">
+                            <img alt="Freshly Baked Goods Image"
+                                src="https://images.unsplash.com/photo-1571841591341-be09a94376b4?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc0OHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                class="features2-image1 thq-img-ratio-16-9" />
+                            <img alt="Customized Orders Image"
+                                src="https://images.unsplash.com/photo-1564227503787-ad186f508e6f?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc1MHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                class="features2-image2 thq-img-ratio-16-9" />
+                            <img alt="Nationwide Delivery Image"
+                                src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTczNzEzMzc0OXw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+                                class="features2-image3 thq-img-ratio-16-9" />
+                        </div>
+                    </div>
+                </div>
+            </features2-wrapper>
+            <pricing-wrapper class="pricing-wrapper">
+
+                <steps-wrapper class="steps-wrapper">
+                    <!--Steps component-->
+                    <div class="steps-container1 thq-section-padding">
+                        <div class="steps-max-width thq-section-max-width">
+                            <div class="steps-container2 thq-grid-2">
+                                <div class="steps-section-header">
+                                    <h2 class="thq-heading-2">
+                                        Discover the Power of Our Products
+                                    </h2>
+                                    <p class="thq-body-large">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Suspendisse varius enim in eros elementum tristique. Duis
+                                        cursus, mi quis viverra ornare, eros dolor interdum nulla,
+                                        ut commodo diam libero vitae erat.
+                                    </p>
+                                    <div class="steps-actions">
+                                        <!-- <button class="thq-button-filled thq-button-animated steps-button">
+                      <span class="thq-body-small">Main action</span>
+                    </button> -->
+                                    </div>
+                                </div>
+                                <div class="steps-container3">
+                                    <div class="steps-container4 thq-card">
+                                        <h2 class="thq-heading-2">
+                                            <span>Browse our delicious selection</span>
+                                        </h2>
+                                        <span class="steps-text14 thq-body-small">
+                                            <span>
+                                                Explore a wide range of freshly baked goods including
+                                                cakes, pastries, cookies, and more.
+                                            </span>
+                                        </span>
+                                        <label class="steps-text15 thq-heading-3">01</label>
+                                    </div>
+                                    <div class="steps-container5 thq-card">
+                                        <h2 class="thq-heading-2">
+                                            <span>Place your order online</span>
+                                        </h2>
+                                        <span class="steps-text17 thq-body-small">
+                                            <span>
+                                                Select your favorite items, specify any customizations,
+                                                and add them to your cart with ease.
+                                            </span>
+                                        </span>
+                                        <label class="steps-text18 thq-heading-3">02</label>
+                                    </div>
+                                    <div class="steps-container6 thq-card">
+                                        <h2 class="thq-heading-2">
+                                            <span>Choose delivery or pickup</span>
+                                        </h2>
+                                        <span class="steps-text20 thq-body-small">
+                                            <span>
+                                                Decide whether you want your order delivered to your
+                                                doorstep or prefer to pick it up from our bakery.
+                                            </span>
+                                        </span>
+                                        <label class="steps-text21 thq-heading-3">03</label>
+                                    </div>
+                                    <div class="steps-container7 thq-card">
+                                        <h2 class="thq-heading-2">
+                                            <span>Enjoy your treats</span>
+                                        </h2>
+                                        <span class="steps-text23 thq-body-small">
+                                            <span>
+                                                Receive your freshly baked treats and indulge in the
+                                                delightful flavors from our online bakery shop.
+                                            </span>
+                                        </span>
+                                        <label class="steps-text24 thq-heading-3">04</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </steps-wrapper>
+
+                <contact-wrapper class="contact-wrapper">
+                    <!--Contact component-->
+                    <div id="Contact" class="contact-contact20 thq-section-padding">
+                        <div class="contact-max-width thq-section-max-width">
+                            <div class="contact-section-title">
+                                <div class="contact-content1">
+                                    <h2 class="thq-heading-2"><span>Contact Us</span></h2>
+                                    <p class="contact-text3 thq-body-large">
+                                        <span>
+                                            We'd love to hear from you! Reach out to us for any
+                                            inquiries or feedback.
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="contact-row">
+                                <div class="contact-content2">
+                                    <svg viewBox="0 0 1024 1024" class="thq-icon-medium">
+                                        <path
+                                            d="M854 342v-86l-342 214-342-214v86l342 212zM854 170q34 0 59 26t25 60v512q0 34-25 60t-59 26h-684q-34 0-59-26t-25-60v-512q0-34 25-60t59-26h684z">
+                                        </path>
+                                    </svg>
+                                    <div class="contact-contact-info1">
+                                        <div class="contact-content3">
+                                            <h3 class="contact-text4 thq-heading-3">Email</h3>
+                                            <p class="contact-text5 thq-body-large">
+                                                <span>
+                                                    Follow us on social media for the latest updates and
+                                                    promotions.
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <span class="contact-email thq-body-small">
+                                            <span>info@onlinebakeryshop.com</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="contact-content4">
+                                    <svg viewBox="0 0 1024 1024" class="thq-icon-medium">
+                                        <path
+                                            d="M282 460q96 186 282 282l94-94q20-20 44-10 72 24 152 24 18 0 30 12t12 30v150q0 18-12 30t-30 12q-300 0-513-213t-213-513q0-18 12-30t30-12h150q18 0 30 12t12 30q0 80 24 152 8 26-10 44z">
+                                        </path>
+                                    </svg>
+                                    <div class="contact-contact-info2">
+                                        <div class="contact-content5">
+                                            <h3 class="contact-text6 thq-heading-3">Phone</h3>
+                                            <p class="contact-text7 thq-body-large">
+                                                <span>
+                                                    For wholesale inquiries, please contact our sales
+                                                    team.
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <span class="contact-phone thq-body-small">
+                                            <span>+1-123-456-7890</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="contact-content6">
+                                    <svg viewBox="0 0 1024 1024" class="thq-icon-medium">
+                                        <path
+                                            d="M512 0c-176.732 0-320 143.268-320 320 0 320 320 704 320 704s320-384 320-704c0-176.732-143.27-320-320-320zM512 512c-106.040 0-192-85.96-192-192s85.96-192 192-192 192 85.96 192 192-85.96 192-192 192z">
+                                        </path>
+                                    </svg>
+                                    <div class="contact-contact-info3">
+                                        <div class="contact-content7">
+                                            <h3 class="contact-text8 thq-heading-3">Office</h3>
+                                            <p class="contact-text9 thq-body-large">
+                                                <span>
+                                                    We strive to provide the best customer service
+                                                    experience.
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <span class="contact-address thq-body-small">
+                                            <span>123 Bakery Street, Cityville, Country</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </contact-wrapper>
+                <footer-wrapper class="footer-wrapper" id="Contact">
+                    <!--Footer component-->
+                    <footer class="footer-footer1 thq-section-padding">
+                        <div class="footer-max-width thq-section-max-width">
+                            <div class="footer-content">
+
+                                <div class="footer-column3">
+                                    <strong class="thq-body-large footer-social-link1-title">
+                                        <span>Connect with Us</span>
+                                    </strong>
+                                    <div class="footer-social-links">
+                                        <div class="footer-link14">
+                                            <svg viewBox="0 0 877.7142857142857 1024" class="thq-icon-small">
+                                                <path
+                                                    d="M713.143 73.143c90.857 0 164.571 73.714 164.571 164.571v548.571c0 90.857-73.714 164.571-164.571 164.571h-107.429v-340h113.714l17.143-132.571h-130.857v-84.571c0-38.286 10.286-64 65.714-64l69.714-0.571v-118.286c-12-1.714-53.714-5.143-101.714-5.143-101.143 0-170.857 61.714-170.857 174.857v97.714h-114.286v132.571h114.286v340h-304c-90.857 0-164.571-73.714-164.571-164.571v-548.571c0-90.857 73.714-164.571 164.571-164.571h548.571z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="footer-link15">
+                                            <svg viewBox="0 0 877.7142857142857 1024" class="thq-icon-small">
+                                                <path
+                                                    d="M585.143 512c0-80.571-65.714-146.286-146.286-146.286s-146.286 65.714-146.286 146.286 65.714 146.286 146.286 146.286 146.286-65.714 146.286-146.286zM664 512c0 124.571-100.571 225.143-225.143 225.143s-225.143-100.571-225.143-225.143 100.571-225.143 225.143-225.143 225.143 100.571 225.143 225.143zM725.714 277.714c0 29.143-23.429 52.571-52.571 52.571s-52.571-23.429-52.571-52.571 23.429-52.571 52.571-52.571 52.571 23.429 52.571 52.571zM438.857 152c-64 0-201.143-5.143-258.857 17.714-20 8-34.857 17.714-50.286 33.143s-25.143 30.286-33.143 50.286c-22.857 57.714-17.714 194.857-17.714 258.857s-5.143 201.143 17.714 258.857c8 20 17.714 34.857 33.143 50.286s30.286 25.143 50.286 33.143c57.714 22.857 194.857 17.714 258.857 17.714s201.143 5.143 258.857-17.714c20-8 34.857-17.714 50.286-33.143s25.143-30.286 33.143-50.286c22.857-57.714 17.714-194.857 17.714-258.857s5.143-201.143-17.714-258.857c-8-20-17.714-34.857-33.143-50.286s-30.286-25.143-50.286-33.143c-57.714-22.857-194.857-17.714-258.857-17.714zM877.714 512c0 60.571 0.571 120.571-2.857 181.143-3.429 70.286-19.429 132.571-70.857 184s-113.714 67.429-184 70.857c-60.571 3.429-120.571 2.857-181.143 2.857s-120.571 0.571-181.143-2.857c-70.286-3.429-132.571-19.429-184-70.857s-67.429-113.714-70.857-184c-3.429-60.571-2.857-120.571-2.857-181.143s-0.571-120.571 2.857-181.143c3.429-70.286 19.429-132.571 70.857-184s113.714-67.429 184-70.857c60.571-3.429 120.571-2.857 181.143-2.857s120.571-0.571 181.143 2.857c70.286 3.429 132.571 19.429 184 70.857s67.429 113.714 70.857 184c3.429 60.571 2.857 120.571 2.857 181.143z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="footer-link16">
+                                            <svg viewBox="0 0 950.8571428571428 1024" class="thq-icon-small">
+                                                <path
+                                                    d="M925.714 233.143c-25.143 36.571-56.571 69.143-92.571 95.429 0.571 8 0.571 16 0.571 24 0 244-185.714 525.143-525.143 525.143-104.571 0-201.714-30.286-283.429-82.857 14.857 1.714 29.143 2.286 44.571 2.286 86.286 0 165.714-29.143 229.143-78.857-81.143-1.714-149.143-54.857-172.571-128 11.429 1.714 22.857 2.857 34.857 2.857 16.571 0 33.143-2.286 48.571-6.286-84.571-17.143-148-91.429-148-181.143v-2.286c24.571 13.714 53.143 22.286 83.429 23.429-49.714-33.143-82.286-89.714-82.286-153.714 0-34.286 9.143-65.714 25.143-93.143 90.857 112 227.429 185.143 380.571 193.143-2.857-13.714-4.571-28-4.571-42.286 0-101.714 82.286-184.571 184.571-184.571 53.143 0 101.143 22.286 134.857 58.286 41.714-8 81.714-23.429 117.143-44.571-13.714 42.857-42.857 78.857-81.143 101.714 37.143-4 73.143-14.286 106.286-28.571z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="footer-link17">
+                                            <svg viewBox="0 0 877.7142857142857 1024" class="thq-icon-small">
+                                                <path
+                                                    d="M135.429 808h132v-396.571h-132v396.571zM276 289.143c-0.571-38.857-28.571-68.571-73.714-68.571s-74.857 29.714-74.857 68.571c0 37.714 28.571 68.571 73.143 68.571h0.571c46.286 0 74.857-30.857 74.857-68.571zM610.286 808h132v-227.429c0-121.714-65.143-178.286-152-178.286-70.857 0-102.286 39.429-119.429 66.857h1.143v-57.714h-132s1.714 37.143 0 396.571v0h132v-221.714c0-11.429 0.571-23.429 4-32 9.714-23.429 31.429-48 68-48 47.429 0 66.286 36 66.286 89.714v212zM877.714 237.714v548.571c0 90.857-73.714 164.571-164.571 164.571h-548.571c-90.857 0-164.571-73.714-164.571-164.571v-548.571c0-90.857 73.714-164.571 164.571-164.571h548.571c90.857 0 164.571 73.714 164.571 164.571z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="footer-link18">
+                                            <svg viewBox="0 0 1024 1024" class="thq-icon-small">
+                                                <path
+                                                    d="M406.286 644.571l276.571-142.857-276.571-144.571v287.429zM512 152c215.429 0 358.286 10.286 358.286 10.286 20 2.286 64 2.286 102.857 43.429 0 0 31.429 30.857 40.571 101.714 10.857 82.857 10.286 165.714 10.286 165.714v77.714s0.571 82.857-10.286 165.714c-9.143 70.286-40.571 101.714-40.571 101.714-38.857 40.571-82.857 40.571-102.857 42.857 0 0-142.857 10.857-358.286 10.857v0c-266.286-2.286-348-10.286-348-10.286-22.857-4-74.286-2.857-113.143-43.429 0 0-31.429-31.429-40.571-101.714-10.857-82.857-10.286-165.714-10.286-165.714v-77.714s-0.571-82.857 10.286-165.714c9.143-70.857 40.571-101.714 40.571-101.714 38.857-41.143 82.857-41.143 102.857-43.429 0 0 142.857-10.286 358.286-10.286v0z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-credits">
+                            <div class="thq-divider-horizontal"></div>
+                            <div class="footer-row">
+                                <span class="thq-body-small">
+                                    <!-- <span>© 2023 Online Bakery Shop. All Rights Reserved.</span> -->
+                                </span>
+                                <div class="footer-footer-links3">
+                                    <span class="thq-body-small">
+                                    </span>
+                                    <span class="thq-body-small">
+                                    </span>
+                                    <span class="thq-body-small">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+        </div>
+        </footer>
+        </footer-wrapper>
+    </div>
+    </div>
+    <script data-section-id="navbar" src="https://unpkg.com/@teleporthq/teleport-custom-scripts"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
